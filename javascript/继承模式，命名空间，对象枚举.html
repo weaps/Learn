@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+<script>
+
+// 继承 圣杯模式
+
+function inherit(Target, Origin){
+	function F () {}
+	F.prototype = Origin.prototype
+	Target.prototype = new F()
+	// 将Target constuctor 归位
+	Target.prototype.constuctor = Target
+	// Target 究竟继承自谁
+	Target.prototype.uber = Origin.prototype
+}
+
+// 继承 圣杯模式 高端写法
+var inherit = (function(){
+	var f = function F(){}
+	return function (Target, Origin) {
+		f.prototype = Origin.prototype
+		Target.prototype = new F()
+		Target.prototype.constuctor = Target
+		Target.prototype.uber = Origin.prototype
+	}
+}())
+
+function Deng(name,wife){
+	var ernai = 'Pan'
+	this.name = name
+	this.wife = wife
+	this.divorce = function(er){
+		this.wife = ernai
+		console.log(this.wife)
+	}
+	this.changeDivorce = function(sannai){
+		ernai = sannai
+		console.log(ernai)
+	}
+}
+var deng = new Deng('Deng','xiaoliu')
+
+// 命名空间
+// 定义一个对象 ，把所有变量放在这个对象里，防止污染全局空间
+
+// 对象枚举
+// hasOwnProperty  用来检测是对象是否含有特定的自身原型上的属性
+var obj = {
+	name: 'wang',
+	age: 20,
+	sex: 'male',
+	__proto__: {
+		lastName: 'Deng'
+	}
+}
+
+for(var key in obj) {
+	// 用法
+	if (obj.hasOwnProperty(key)) {
+		console.log(key + "--" + obj[key])
+	}
+}
+
+// instanceof
+// 官方解释： A instanceof B  A对象 是不是B构造函数构造出来的
+// 看A对象的原型链上 有没有 B的 原型
+
+</script>	
+</body>
+</html>
