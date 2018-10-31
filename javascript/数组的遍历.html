@@ -13,6 +13,71 @@
 			fn(this[i], i, this)
 		}
 	}
+	var arr = [11,23,3,44,5]
+
+	Array.prototype.push = function() {
+		for (var i = 0; i < arguments.length; i++) {
+			this[this.length] = arguments[i]
+		}
+	}
+
+	// splice(参数1是从第几位开始, 参数2截取多少的长度, 参数3在切口处添加新的数据)
+	// unshift() 从数组的最后一位添加内容
+	// shift() 从数组的第一位删除数据
+	// sort() // 排序
+
+	// 排序  
+	// 1, 必须写2参数   
+	// 2，看返回值 ，a) 当返回值为负数时，那么前面的数放在前面
+	//              b) 为正数时，那么后面的数在前
+	// 				c) 为0时，保持不变
+
+	arr.sort(function(a, b){
+		return a-b;
+	})
+
+	var wang = {
+		name: "wang",
+		age: 30,
+		sex: "male"
+	}
+	var zhang = {
+		name: "zhang",
+		age: 34,
+		sex: "fmale"
+	}
+	var zhao = {
+		name: "zhao",
+		age: 20,
+		sex: undefined
+	}
+
+	var obj = [wang, zhang, zhao]
+
+	obj.sort(function(a, b){
+		return a.age - b.age;
+	})
+
+	var str = ['asdfasd中国', 'asd槈','werwe手机','a','bb','fasdfasdfasdfa']
+	var str1 = "asdfasdfaa中"
+
+	// 封装一个排序方法，
+	function sorts(str){
+		var len = str.length
+		for (var i = 0; i < str.length; i++) {
+			if (str.charCodeAt(i) > 255) {
+				len ++;
+			}
+		}
+		return len;
+	}
+
+	// 通过调用排序的方法，实现按照字节长度排序
+	str.sort(function(a, b){
+		return sorts(a) - sorts(b);
+	})
+
+	
 </script>	
 </body>
 </html>
