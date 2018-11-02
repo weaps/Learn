@@ -78,15 +78,55 @@
 		return sorts(a) - sorts(b);
 	})
 
+
+
+	// 包装类实现原理
+	var num = 123;
+	num.bac = "abc"
+
+	// 系统将会 new Number(num) = ‘abc' 后，随即销毁
+	// new Number(num).bac = 'abc'
+	console.log(num.abc) // 所以当你打印num.abc 将会打印出undefined
+	// new Number(num).abc = undefined
+
+	// 字符窜是不能有方法的，
+	var str = 'abc'
+	str.length //调用str.length时，系统会new String(str).length
+
+
+
 	// 类数组
 	//      a) 属性要为索引（数字）属性；
 	//      b) 必须要Length属性，最好加上Push方法
 	// 例：
 	var obj1 = {
-		"0": "a",
-		"1": "b",
-		"length": 3，
+		"2": "a",
+		"3": "b",
+		"4": "c",
+		"length": 3,
 		"push": Array.prototype.push
+	}
+
+	// 类数组push的原理
+	Array.prototype.push = function (target) {
+		this[this.length] = target;
+		this.length ++
+	}
+
+	// 数组去重
+	var tem = [1,1,1,11,2,2,2,2,3,4,5,55]
+	Array.prototype.unique = function () {
+		// 创建一个空对象，用来存放数组键值
+		var temp = {}
+		var arr = []
+		var len = this.length
+		for (var i = 0; i < len; i++) {
+			if (!temp[this[i]]) {
+				 temp[this[i]] = "abc"
+				arr.push(this[i])
+			}
+		}
+		return arr
 	}
 
 	
