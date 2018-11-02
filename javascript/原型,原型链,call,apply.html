@@ -5,6 +5,14 @@
 	<title>Document</title>
 </head>
 <body>
-	
+<script>
+	Person.prototype.name = "abc";
+	function Person(age, sex) {
+		this.age = age
+		this.sex = sex
+	}
+
+	var person = new Person(20, "male")
+</script>	
 </body>
 </html>
