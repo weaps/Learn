@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>vue</title>
+	<style>
+		/* 
+			*动画之所以都是以.fade-开头，是因为在transition标签里定义的name属性
+			*如果不定义name属性，可以用.v-enter   .v-enter-active
+		 */
+		.fade-enter {
+			opacity: 0
+		}
+		.fade-enter-active {
+			transition: opacity 3s;
+		}
+
+		/*动画消失或者返回时可用*/
+		.fade-leave-to {
+			opacity: 0
+		}
+		.fade-leave-active {
+			transition: opacity 3s
+		}
+	</style>
+</head>
+<body>
+<!-- vue动画原理 -->
+<!--  -->
+<transition name="fade">
+	<!-- 需要将动画元素用transition包裹起来 -->
+	<div class="box">box</div>
+</transition>
+</body>
+</html>

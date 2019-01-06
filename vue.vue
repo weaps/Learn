@@ -20,6 +20,7 @@ routes: [
 
 
 <!-- // css动画原理 -->
+<!-- .fade-enter   .fade-enter-active -->
 <transition
 	name="fade"
 

@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>vue</title>
+	<script src="./js/vue.js"></script>
+	<style>
+		/* 
+			* animate 动画
+		 */
+		@keyframes bounce-in {
+			0% {
+				transform: scale(0);
+			}
+			50% {
+				transform: scale(1.5);
+			}
+			100% {
+				transform: scale(1);
+			}
+		}
+
+		.fade-enter-active,
+		.custom-enter {
+			transform-origin: left center;
+			animation: bounce-in 1s
+		}
+		.fade-leave-active,
+		.custom-leave {
+			transform-origin: left center;
+			animation: bounce-in 1s reverse;
+		}
+	</style>
+</head>
+<body>
+<div id="app">
+	<!-- vue动画原理 -->
+	<!--  -->
+	<transition name="fade">
+		<!-- 需要将动画元素用transition包裹起来 -->
+		<div class="box" v-show="show">box</div>
+	</transition>
+
+	<!-- 
+		*自定义样式名称
+	-->
+	<transition
+		name="fade"
+		enter-active-class="custom-enter"
+		leave-active-class="custom-leave"
+	>
+		
+	</transition>
+
+	<button @click="btn">asdfasdfa</button>
+</div>
+<script>
+	var vm = new Vue({
+		el: "#app",
+		data: {
+			show: false
+		},
+		methods: {
+			btn() {
+				this.show = !this.show;
+			}
+		}
+	})
+</script>
+</body>
+</html>
