@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+<script>
+    function New(fn) {
+        debugger
+        let res = {}
+        res.__proto__ = fn.prototype
+        let ret = fn.apply(res, Array.prototype.slice.call(arguments, 1))
+        if (ret !== null && typeof ret === 'object' || typeof ret === 'function') {
+            return ret;
+        }
+        return res
+    }
+    function A() {}
+    var obj = New(A)
+</script>
+</body>
+</html>
